@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donate - Daawat</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <link rel="icon" href="logo.png" type="image/icon type">
+  <!-- ✅ jsPDF Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="menu-btn">←</a>
+    <h1 class="app-name">Donate</h1>
+  </header>
+
+  <!-- Donation Form -->
+  <main class="form-container" style="margin-top:120px; text-align:center;">
+    <h2>🙏 Donate to Support Daawat</h2>
+    <p>Every contribution helps us reduce food wastage and feed the needy ❤️</p>
+    
+    <form id="donationForm" style="margin-top:20px;">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+      
+      <label for="email">Email</label>
+      <input type="text" id="email" required>
+      
+      <label for="amount">Donation Amount (₹)</label>
+      <input type="number" id="amount" required>
+      
+      <label for="txnId">Transaction ID</label>
+      <input type="text" id="txnId" placeholder="Enter UPI Transaction ID" required>
+      
+      <h3>Pay via UPI</h3>
+      <p>Scan the QR code below or use UPI ID</p>
+      <img src="qr.jpg" alt="UPI QR Code" width="200" style="margin:10px;">
+      <p><b>UPI ID: altpradeep@ibl</b></p>
+      
+      <button type="button" onclick="generateReceipt()">Download Receipt</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="social-media">
+      <a href="https://www.instagram.com/whypradeeep/"><i class='bx bxl-instagram'></i></a>
+      <a href="https://www.linkedin.com/in/pradeep-singh4/"><i class='bx bxl-linkedin'></i></a>
+      <a href="https://x.com/altpradeep"><i class='bx bxl-twitter'></i></a>
+      <a href="https://github.com/pradeep-r04"><i class='bx bxl-github'></i></a>
+    </div>
+    <div class="text">
+      <p>Copyright © 2025 Daawat. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+
+  async function generateReceipt() {
+    const { jsPDF } = window.jspdf;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const amount = document.getElementById("amount").value;
+    const txnId = document.getElementById("txnId").value;
+
+    if (!name || !email || !amount || !txnId) {
+      alert("Please fill all details and enter Transaction ID before downloading receipt.");
+      return;
+    }
+
+    const doc = new jsPDF();
+
+    // Add Daawat Logo
+    const logo = await fetch("logo.png").then(res => res.blob()).then(blob => {
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    });
+    doc.addImage(logo, "PNG", 85, 10, 40, 40); // center top
+
+    // Title
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("Daawat Donation Receipt", 105, 60, { align: "center" });
+
+    // Draw a nice box around details
+    doc.setDrawColor(120, 12, 40); // Daawat theme color
+    doc.setLineWidth(0.8);
+    doc.roundedRect(15, 70, 180, 100, 5, 5); // x, y, w, h, border radius
+
+    // Receipt Details inside the box
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Name: ${name}`, 25, 85);
+    doc.text(`Email: ${email}`, 25, 95);
+    doc.text(`Donation Amount: INR ${amount}`, 25, 105);
+    doc.text(`Transaction ID: ${txnId}`, 25, 115);
+    doc.text(`Date: ${new Date().toLocaleString()}`, 25, 125);
+
+    // Thank you note
+    doc.setFontSize(14);
+    doc.setTextColor(0, 128, 0);
+    doc.text(" Thank you for supporting Daawat! ", 105, 150, { align: "center" });
+
+    // Footer
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text("Together, we reduce food wastage and feed the needy.", 105, 165, { align: "center" });
+
+    // Save file
+    doc.save("Donation_Receipt.pdf");
+  }
+</script>
+
+</body>
+</html>
