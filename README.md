@@ -71,7 +71,12 @@ or deploy using Firebase:
 firebase deploy
 ```
 ## 📸 Screenshots  
-
+<img width="1919" height="971" alt="Image" src="https://github.com/user-attachments/assets/e58d4722-faf5-4f4e-b3f8-6eb7bd51cf97" />  
+<img width="1897" height="1015" alt="Image" src="https://github.com/user-attachments/assets/4d1a96f0-7e49-403a-9c23-cefd849288db" />  
+<img width="1889" height="1013" alt="Image" src="https://github.com/user-attachments/assets/0686cee6-21c9-485f-8b00-b2e02cb00b4a" />  
+<img width="1892" height="1015" alt="Image" src="https://github.com/user-attachments/assets/4b07c73b-f2c5-437b-82cb-ccda850d8905" />  
+<img width="1919" height="967" alt="Image" src="https://github.com/user-attachments/assets/cd7b0b23-c8ba-4c30-980d-34829813fe4d" />  
+  
 ## 🌱 Future Enhancements  
 🔔 Real-time notifications for new nearby daawats  
 🤝 NGO & volunteer organization integration  
@@ -98,4 +103,4 @@ firebase deploy
 
 
 
-## 🌍 “DAAWAT bridges communities through technology — turning surplus into smiles.”
+### 🌍 “DAAWAT bridges communities through technology — turning surplus into smiles.”
