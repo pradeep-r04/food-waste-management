@@ -99,6 +99,9 @@ firebase deploy
   <a href="https://www.linkedin.com/in/pradeep-singh4/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
   </a>
+	<a href="https://www.instagram.com/in/whypradeeep/">
+    <img src="https://img.shields.io/badge/Instagram-F72D3B?style=for-the-badge&logo=instagram&logoColor=white"/>
+  </a>
 </p>
 
 
