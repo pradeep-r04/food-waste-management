@@ -25,7 +25,7 @@ The platform aims to minimize food waste and ensure surplus food reaches those w
 | **Frontend** | HTML, CSS, JavaScript |
 | **Backend** | Firebase (Authentication & Realtime Database) |
 | **Database** | Firebase Firestore |
-| **Location Services** | Google Maps API, Geolocation API |
+| **Location Services** | Leaflet API |
 | **Version Control** | Git, GitHub |
 | **Hosting** | Firebase Hosting |
 
